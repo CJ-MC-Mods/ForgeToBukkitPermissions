@@ -20,7 +20,7 @@ repositories {
 
 version = "1.0"
 group = "com.cjm721.forgetobukkitpermissions" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "ForgeToBukkitPermissions"
+archivesBaseName = "ForgeToBukkitPermissions-1.12.2"
 
 sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 compileJava {
