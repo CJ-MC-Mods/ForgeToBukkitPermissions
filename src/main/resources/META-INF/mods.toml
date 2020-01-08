@@ -1,0 +1,22 @@
+modLoader="javafml" #mandatory
+loaderVersion="[26,)" #mandatory (26 is current forge version)
+issueTrackerURL="https://github.com/CJ-MC-Mods/ForgeToBukkitPermissions/issues"
+
+[[mods]]
+    modId="forgetobukkitpermissions"
+    namespace="forgetobukkitpermissions"
+    version="1.0"
+    displayName="Forge To Bukkit Permissions"
+    displayURL="https://www.curseforge.com/minecraft/mc-mods/forge-to-bukkit-permissions"
+    logoFile=""
+    credits="Assets: Mega___Byte"
+    authors="CJ Miller (cjm721)"
+    description='''
+    Delegates Forge Permissions Checks to Bukkit
+    '''
+    [[dependencies.forgetobukkitpermissions]] #optional
+        modId="forge" #mandatory
+        mandatory=true #mandatory
+        versionRange="[28.0.62,)" #mandatory
+        ordering="NONE"
+        side="SERVER"
