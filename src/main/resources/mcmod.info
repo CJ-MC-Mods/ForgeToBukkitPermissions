@@ -1,0 +1,16 @@
+[
+{
+  "modid": "forgetobukkitpermissions",
+  "name": "Forge to Bukkit Permissions",
+  "description": "Delegates Forge Permissions Checks to Bukkit",
+  "version": "1.0",
+  "mcversion": "1.12.2",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["CJ Miller (cjm721)"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
