@@ -1,6 +1,7 @@
 modLoader="javafml" #mandatory
-loaderVersion="[26,)" #mandatory (26 is current forge version)
+loaderVersion="[30,)" #mandatory (26 is current forge version)
 issueTrackerURL="https://github.com/CJ-MC-Mods/ForgeToBukkitPermissions/issues"
+license="All rights reserved"
 
 [[mods]]
     modId="forgetobukkitpermissions"
@@ -17,6 +18,6 @@ issueTrackerURL="https://github.com/CJ-MC-Mods/ForgeToBukkitPermissions/issues"
     [[dependencies.forgetobukkitpermissions]] #optional
         modId="forge" #mandatory
         mandatory=true #mandatory
-        versionRange="[28.0.62,)" #mandatory
+        versionRange="[30,)" #mandatory
         ordering="NONE"
         side="SERVER"

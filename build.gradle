@@ -1,33 +1,74 @@
 buildscript {
     repositories {
-        maven { url = 'https://files.minecraftforge.net/maven' }
+        mavenLocal()
+        maven {
+            url = "http://files.minecraftforge.net/maven"
+        }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
         jcenter()
         mavenCentral()
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
+        classpath group: 'gradle.plugin.com.matthewprenger', name: 'CurseGradle', version: "1.+"
     }
 }
-apply plugin: 'net.minecraftforge.gradle'
-// Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
-apply plugin: 'eclipse'
-apply plugin: 'maven-publish'
 
-repositories {
+plugins {
+    id "com.wynprice.cursemaven" version "2.1.1"
+}
+
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+//Only edit below this line, the above code adds and enables the nessasary things for Forge to be setup.
+apply plugin: 'maven'
+apply plugin: 'idea'
+apply plugin: 'com.matthewprenger.cursegradle'
+
+
+idea{
+    module{
+        for (String excludeDirName in ["run", "out", "ouput", "logs", "gradle"]) {
+            File excludeDir = new File(projectDir, excludeDirName)
+            excludeDirs.add(excludeDir)
+        }
+    }
+}
+
+repositories  {
     maven {
         name = "PaperMC"
         url = "https://papermc.io/repo/repository/maven-public"
+    }
+    maven {
+        name 'tterrag maven'
+        url "http://maven.tterrag.com/"
+    }
+    maven {
+        name = "CoFH Maven"
+        url = "http://maven.covers1624.net"
+    }
+    maven {
+        url "http://tehnut.info/maven"
+    }
+    maven {
+        // location of the maven that hosts JEI files
+        name = "Progwml6 maven"
+        url = "https://dvs1.progwml6.com/files/maven/"
     }
 }
 
 version = "1.0"
 group = "com.cjm721.`" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "ForgeToBukkitPermissions-1.14.4"
+archivesBaseName = "ForgeToBukkitPermissions-1.16.5"
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 
 minecraft {
-    mappings channel: 'snapshot', version: '20200105-1.14.3'
+    mappings channel: 'snapshot', version: '20201028-1.16.3'
 
     runs {
         client {
@@ -77,9 +118,9 @@ minecraft {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.14.4-28.1.0'
+    minecraft 'net.minecraftforge:forge:1.16.5-36.0.13'
 
-    compile "com.destroystokyo.paper:paper-api:1.14.4+"
+    compile "com.destroystokyo.paper:paper-api:1.16.5+"
 }
 
 jar {
@@ -105,15 +146,16 @@ def reobfArtifact = artifacts.add('default', reobfFile) {
     type 'jar'
     builtBy 'reobfJar'
 }
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            artifact reobfArtifact
-        }
+
+curseforge {
+    if (project.hasProperty('curseForgeAPIKey')) {
+        apiKey = project.findProperty('curseForgeAPIKey')
     }
-    repositories {
-        maven {
-            url "file:///${project.projectDir}/mcmodsrepo"
-        }
+    project {
+        id = '357736'
+//        changelog = file('CHANGELOG.md') // A file can also be set using: changelog = file('changelog.txt')
+//        changelogType = 'markdown'
+        releaseType = 'release'
+        gameVersionStrings = ['1.16.3','1.16.4','1.16.5']
     }
 }
